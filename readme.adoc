@@ -1,0 +1,10 @@
+# Mama Pizza
+
+## Introduction
+
+This is a sample Project covering the following Topics
+
+* AWS Application
+* Infrastructure as Code
+* Serverless
+
