@@ -1,3 +1,9 @@
 # IntelliJ
 .idea
 *.iml
+
+# CDK (AWS)
+/infrastructure/cdk.out
+
+# Java
+/infrastructure/target

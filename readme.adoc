@@ -1,6 +1,6 @@
-# Mama Pizza
+= Mama Pizza
 
-## Introduction
+== Introduction
 
 This is a sample Project covering the following Topics
 
@@ -8,3 +8,43 @@ This is a sample Project covering the following Topics
 * Infrastructure as Code
 * Serverless
 
+== Warning
+
+Applying this code generate costs on AWS !!!
+
+== Requirements
+
+* https://aws.amazon.com/[AWS Account]
+* NPM for CLI & CDK commands
+* https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html[AWS CLI]
+* Installation of SDK (npm install -g aws-cdk)
+
+== Documentations
+
+* https://docs.aws.amazon.com/pdfs/cdk/v2/guide/awscdk.pdf#home[AWS CDK]
+
+== Realised Steps
+
+Here a recap of actions, done during the development, to create the different modules.
+
+=== Infrastructure
+
+==== Preparation
+
+```
+cdk --version
+aws configure (Access Keys)
+```
+
+==== Init Project
+
+```
+mkdir infrastructure
+cd infrastructure
+cdk init app --language java
+```
+
+```
+cdk bootstrap
+cdk deploy
+```
