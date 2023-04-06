@@ -34,7 +34,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <mainClass>com.bindstone.InfrastructureApp</mainClass>
+                    <mainClass>com.bindstone.Infrastructure</mainClass>
                 </configuration>
             </plugin>
         </plugins>
@@ -46,6 +46,11 @@
             <groupId>software.amazon.awscdk</groupId>
             <artifactId>aws-cdk-lib</artifactId>
             <version>${cdk.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awscdk</groupId>
+            <artifactId>apigatewayv2-integrations-alpha</artifactId>
+            <version>2.44.0-alpha.0</version>
         </dependency>
 
         <dependency>

@@ -11,6 +11,7 @@
 
     <modules>
         <module>infrastructure</module>
+        <module>lambda_fill_stock</module>
     </modules>
 
     <properties>
