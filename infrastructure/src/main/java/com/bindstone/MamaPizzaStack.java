@@ -1,5 +1,6 @@
 package com.bindstone;
 
+import org.jetbrains.annotations.NotNull;
 import software.amazon.awscdk.*;
 import software.amazon.awscdk.services.apigatewayv2.alpha.*;
 import software.amazon.awscdk.services.apigatewayv2.integrations.alpha.HttpLambdaIntegration;
@@ -33,12 +34,22 @@ public class MamaPizzaStack extends Stack {
                 .build();
 
 
+        HttpApi httpApi = createFillStockLambda();
+
+        new CfnOutput(this, "fill_stock_api", CfnOutputProps.builder()
+                .description("Url for Fill Stock Api")
+                .value(httpApi.getApiEndpoint())
+                .build());
+    }
+
+    @NotNull
+    private HttpApi createFillStockLambda() {
         List<String> functionOnePackagingInstructions = Arrays.asList(
                 "/bin/sh",
                 "-c",
-                "cd FunctionOne " +
+                "cd lambda_fill_stock " +
                         "&& mvn clean install " +
-                        "&& cp /asset-input/FunctionOne/target/functionone.jar /asset-output/"
+                        "&& cp /asset-input/lambda_fill_stock/target/lambda_fill_stock.jar /asset-output/"
         );
 
         BundlingOptions.Builder builderOptions = BundlingOptions.builder()
@@ -54,34 +65,30 @@ public class MamaPizzaStack extends Stack {
                 .user("root")
                 .outputType(ARCHIVED);
 
-        Function functionOne = new Function(this, "FunctionOne", FunctionProps.builder()
+        Function lambdaFillStock = new Function(this, "lambda_fill_stock", FunctionProps.builder()
                 .runtime(Runtime.JAVA_11)
-                .code(Code.fromAsset("../software/", AssetOptions.builder()
+                .code(Code.fromAsset("../", AssetOptions.builder()
                         .bundling(builderOptions
                                 .command(functionOnePackagingInstructions)
                                 .build())
                         .build()))
-                .handler("helloworld.App")
+                .handler("com.bindstone.lambda_fill_stock.Main")
                 .memorySize(1024)
                 .timeout(Duration.seconds(10))
                 .logRetention(RetentionDays.ONE_WEEK)
                 .build());
 
-        HttpApi httpApi = new HttpApi(this, "sample-api", HttpApiProps.builder()
-                .apiName("sample-api")
+        HttpApi httpApi = new HttpApi(this, "lambda-fill-stock-api", HttpApiProps.builder()
+                .apiName("lambda-fill-stock-api")
                 .build());
 
         httpApi.addRoutes(AddRoutesOptions.builder()
-                .path("/one")
+                .path("/lambda-fill-stock")
                 .methods(singletonList(HttpMethod.GET))
-                .integration(new HttpLambdaIntegration("functionOne", functionOne, HttpLambdaIntegrationProps.builder()
+                .integration(new HttpLambdaIntegration("lambda_fill_stock", lambdaFillStock, HttpLambdaIntegrationProps.builder()
                         .payloadFormatVersion(PayloadFormatVersion.VERSION_2_0)
                         .build()))
                 .build());
-
-        new CfnOutput(this, "HttApi", CfnOutputProps.builder()
-                .description("Url for Http Api")
-                .value(httpApi.getApiEndpoint())
-                .build());
+        return httpApi;
     }
 }

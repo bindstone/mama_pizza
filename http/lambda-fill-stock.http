@@ -1,0 +1,2 @@
+GET https://oz571rc8mi.execute-api.eu-west-1.amazonaws.com/lambda-fill-stock
+Accept: application/json

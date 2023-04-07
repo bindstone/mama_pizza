@@ -48,3 +48,5 @@ cdk init app --language java
 cdk bootstrap
 cdk deploy
 ```
+
+https://github.com/aws-samples/cdk-lambda-packaging-java

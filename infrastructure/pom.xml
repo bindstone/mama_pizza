@@ -14,6 +14,7 @@
 
         <cdk.version>2.72.1</cdk.version>
         <constructs.version>[10.0.0,11.0.0)</constructs.version>
+        <api.gateway.version>2.72.1-alpha.0</api.gateway.version>
         <junit.version>5.7.1</junit.version>
     </properties>
 
@@ -50,7 +51,7 @@
         <dependency>
             <groupId>software.amazon.awscdk</groupId>
             <artifactId>apigatewayv2-integrations-alpha</artifactId>
-            <version>2.44.0-alpha.0</version>
+            <version>${api.gateway.version}</version>
         </dependency>
 
         <dependency>
