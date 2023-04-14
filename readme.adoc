@@ -50,3 +50,5 @@ cdk deploy
 ```
 
 https://github.com/aws-samples/cdk-lambda-packaging-java
+
+https://cdkworkshop.com/50-java/70-advanced-topics/100-pipelines/3000-new-pipeline.html

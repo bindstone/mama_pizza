@@ -43,6 +43,7 @@ public class FillStockLambda {
                 .outputType(ARCHIVED);
 
         Function lambdaFillStock = new Function(stack, "lambda_fill_stock", FunctionProps.builder()
+                .functionName("lambda_fill_stock")
                 .runtime(Runtime.JAVA_11)
                 .code(Code.fromAsset("../", AssetOptions.builder()
                         .bundling(builderOptions

@@ -17,6 +17,7 @@ public class MamaPizzaStack extends Stack {
         var menuCardBucket = MenuCardBucket.build(this);
         var fillStockLambda = FillStockLambda.build(this);
         var fillStockApi = FillStockApi.build(this, fillStockLambda);
+        var database = StockDatabase.build(this);
 
         new CfnOutput(this, "fill_stock_api", CfnOutputProps.builder()
                 .description("Url for Fill Stock Api")
