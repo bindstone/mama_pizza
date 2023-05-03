@@ -12,7 +12,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <cdk.version>2.72.1</cdk.version>
+        <cdk.version>2.77.0</cdk.version>
         <constructs.version>[10.0.0,11.0.0)</constructs.version>
         <api.gateway.version>2.72.1-alpha.0</api.gateway.version>
         <junit.version>5.7.1</junit.version>
